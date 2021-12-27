@@ -1,0 +1,3 @@
+TOTAL_POKEMONS = 1118
+FIRST_GENERATION_MAX_ID = 151
+BASE_URL = 'https://pokeapi.co/api/v2'
