@@ -7,7 +7,7 @@ def pokemons_with_at_and_two_a():
   return len([pokemon for pokemon in pokemons_names if pokemon.count('a') == 2 and 'at' in pokemon])
 
 
-def raichu_procreate(pokemon_name):
+def procreation_specie_quantity(pokemon_name):
   pokemon_species = make_request(f'{BASE_URL}/pokemon-species/{pokemon_name}')
   egg_groups_links = map(lambda x: x['url'], pokemon_species.json()['egg_groups'])
   procreative_species = set()
@@ -20,6 +20,7 @@ def max_and_min_weight_by_type(type):
   pokemons = make_request(f'{BASE_URL}/type/{type}')
   max_weight, min_weight = 0, float('inf')
   for pokemon in pokemons.json()['pokemon']:
+    print(pokemon['pokemon']['url'])
     if get_id_by_url(pokemon['pokemon']['url']) <= FIRST_GENERATION_MAX_ID:
       new_pokemon = make_request(pokemon['pokemon']['url']).json()
       max_weight = max(max_weight, new_pokemon['weight'])
@@ -28,7 +29,7 @@ def max_and_min_weight_by_type(type):
 
 if __name__ == '__main__':
   print(pokemons_with_at_and_two_a())
-  print(raichu_procreate('raichu'))
+  print(procreation_specie_quantity('raichu'))
   print(max_and_min_weight_by_type('fighting'))
 
 
