@@ -20,7 +20,6 @@ def max_and_min_weight_by_type(type):
   pokemons = make_request(f'{BASE_URL}/type/{type}')
   max_weight, min_weight = 0, float('inf')
   for pokemon in pokemons.json()['pokemon']:
-    print(pokemon['pokemon']['url'])
     if get_id_by_url(pokemon['pokemon']['url']) <= FIRST_GENERATION_MAX_ID:
       new_pokemon = make_request(pokemon['pokemon']['url']).json()
       max_weight = max(max_weight, new_pokemon['weight'])
